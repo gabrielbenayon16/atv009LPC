@@ -12,4 +12,4 @@ class Professor:
             print("O professor já atingiu o limite de 5 disciplinas.")
 
     def listar_disciplinas(self):
-        return [d.nome for d in self.disciplinas]git
+        return [d.nome for d in self.disciplinas]
