@@ -1,3 +1,5 @@
+from professor import Professor
+
 class Departamento:
     def __init__(self, nome):
         self.nome = nome

@@ -1,3 +1,5 @@
+from departamento import Departamento
+
 class Universidade:
     def __init__(self, nome):
         self.nome = nome
