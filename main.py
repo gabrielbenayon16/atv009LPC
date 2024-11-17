@@ -6,76 +6,69 @@ from disciplina import Disciplina
 
 def main():
 
-
-    # criando a universidade
     universidade = Universidade("UEA")
     print(f"\nUniversidade: {universidade.nome}")
 
+    # criando departamentos e professores
+    departamentos_nomes = [
+        "Departamento de Computação",
+        "Departamento de Ciclo Básico",
+        "Departamento de Mecânica",
+        "Departamento de Elétrica",
+        "Departamento de Química",
+    ]
+    professores_nomes = [
+        "Ciclano da Silva",
+        "Beltrano de Souza",
+        "Raimundo Nonato",
+        "Girafales",
+        "Brás Cubas",
+    ]
 
-    # criando departamentos
-    departamento1 = Departamento("Departamento de Ciclo Básico")
-    departamento2 = Departamento("Departamento de Computação")
-    departamento3 = Departamento("Departamento de Elétrica")
-    departamento4 = Departamento("Departamento de Mecânica")
-    departamento5 = Departamento("Departamento de Química")
-    universidade.adicionar_departamento(departamento1)
-    universidade.adicionar_departamento(departamento2)
-    universidade.adicionar_departamento(departamento3)
-    universidade.adicionar_departamento(departamento4)
-    universidade.adicionar_departamento(departamento5)
+    departamentos = [
+        Departamento(nome) for nome in departamentos_nomes
+    ]
+    professores = [
+        Professor(nome) for nome in professores_nomes
+    ]
+
+    for dep, prof in zip(departamentos, professores):
+        universidade.adicionar_departamento(dep)
+        dep.adicionar_professor(prof)
+
     print("\nDepartamentos:")
     for departamento in universidade.listar_departamentos():
         print(f"- {departamento}")
 
-
-    #Criando professores
-    professor1 = Professor("Ciclano da Silva")
-    professor2 = Professor("Beltrano de Souza")
-    professor3 = Professor("Raimundo Nonato")
-    professor4 = Professor("Girafales")
-    professor5 = Professor("Brás Cubas")
-    departamento1.adicionar_professor(professor1)
-    departamento2.adicionar_professor(professor2)
-    departamento3.adicionar_professor(professor3)
-    departamento4.adicionar_professor(professor4)
-    departamento5.adicionar_professor(professor5)
     print("\nProfessores adicionados:")
-    print(f"Departamento {departamento1.nome}: {departamento1.listar_professores()}")
-    print(f"Departamento {departamento2.nome}: {departamento2.listar_professores()}")
-    print(f"Departamento {departamento3.nome}: {departamento3.listar_professores()}")
-    print(f"Departamento {departamento4.nome}: {departamento4.listar_professores()}")
-    print(f"Departamento {departamento5.nome}: {departamento5.listar_professores()}")
+    for dep in departamentos:
+        print(f"{dep.nome}: {dep.listar_professores()}")
 
+    # criando disciplinas
+    disciplinas_dados = [
+        ('Programação de Computadores e Algoritmos', 60),
+        ("Cálculo 1", 90),
+        ("Mecânica dos Sólidos", 66),
+        ("Eletricidade", 66),
+        ('Química Geral', 60),
+    ]
 
-    #Criando disciplinas
-    disciplina1 = Disciplina("Progrmação de Computadores e Algoritmos", 60, professor1)
-    disciplina2 = Disciplina("Cálculo 1", 90, professor2)
-    disciplina3 = Disciplina("Mecânica dos Sólidos", 66, professor3)
-    disciplina4 = Disciplina("Probabilidade e Estatística", 66, professor4)
-    disciplina5 = Disciplina("Química Geral", 60, professor5)
-    professor1.adicionar_disciplina(disciplina1)
-    professor2.adicionar_disciplina(disciplina2)
-    professor3.adicionar_disciplina(disciplina3)
-    professor4.adicionar_disciplina(disciplina4)
-    professor5.adicionar_disciplina(disciplina5)
+    disciplinas = [
+        Disciplina(nome, carga_horaria, prof)
+        for (nome, carga_horaria), prof in zip(disciplinas_dados, professores)
+    ]
+
+    for prof, disc in zip(professores, disciplinas):
+        prof.adicionar_disciplina(disc)
+
     print("\nDisciplinas adicionadas:")
-    print(f"Professor {professor1.nome}: {professor1.listar_disciplinas()}")
-    print(f"Professor {professor2.nome}: {professor2.listar_disciplinas()}")
-    print(f"Professor {professor3.nome}: {professor3.listar_disciplinas()}")
-    print(f"Professor {professor4.nome}: {professor4.listar_disciplinas()}")
-    print(f"Professor {professor5.nome}: {professor5.listar_disciplinas()}")
+    for prof in professores:
+        print(f"{prof.nome}: {prof.listar_disciplinas()}")
 
-
-    #Exibindo informações detalhadas
     print("\nDetalhes das Disciplinas:")
-    print(f"- {disciplina1.informacoes_disciplina()}")
-    print(f"- {disciplina2.informacoes_disciplina()}")
-    print(f"- {disciplina3.informacoes_disciplina()}")
-    print(f"- {disciplina4.informacoes_disciplina()}")
-    print(f"- {disciplina5.informacoes_disciplina()}")
+    for disc in disciplinas:
+        print(f"- {disc.informacoes_disciplina()}")
 
-    # Finalizando
-    print("\nSistema finalizado com sucesso!")
 
 # executar o programa
 if __name__ == "__main__":
