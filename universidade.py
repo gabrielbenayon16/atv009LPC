@@ -13,7 +13,7 @@ class Universidade:
 
     def remover_departamento(self, departamento):
         if departamento in self.departamentos:
-            departamento.remover_todos_professores()  # Remove os professores associados
+            departamento.remover_todos_professores()
             self.departamentos.remove(departamento)
         else:
             print(f"O departamento '{departamento.nome}' não está nesta universidade.")
