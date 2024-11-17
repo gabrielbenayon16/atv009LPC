@@ -4,12 +4,21 @@ class Professor:
     def __init__(self, nome):
         self.nome = nome
         self.disciplinas = []
+        self.departamento = None
 
     def adicionar_disciplina(self, disciplina):
-        if len(self.disciplinas) < 5:
+        if disciplina not in self.disciplinas:
             self.disciplinas.append(disciplina)
-        else:
-            print("O professor já atingiu o limite de 5 disciplinas.")
+            disciplina.professor = self
+
+    def remover_disciplina(self, disciplina):
+        if disciplina in self.disciplinas:
+            disciplina.professor = None
+            self.disciplinas.remove(disciplina)
+
+    def remover_todas_disciplinas(self):
+        for disciplina in list(self.disciplinas):
+            self.remover_disciplina(disciplina)
 
     def listar_disciplinas(self):
-        return [d.nome for d in self.disciplinas]
+        return [disc.nome for disc in self.disciplinas]

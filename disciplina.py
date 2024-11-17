@@ -8,5 +8,5 @@ class Disciplina:
         return {
             "nome": self.nome,
             "carga_horaria": self.carga_horaria,
-            "professor": self.professor.nome if self.professor else None
+            "professor": self.professor.nome if self.professor else "Nenhum"
         }
