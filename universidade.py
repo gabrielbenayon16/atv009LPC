@@ -6,10 +6,21 @@ class Universidade:
         self.departamentos = []
 
     def adicionar_departamento(self, departamento):
-        if len(self.departamentos) < 5:
+        if departamento not in self.departamentos:
             self.departamentos.append(departamento)
         else:
-            print("A universidade já atingiu o limite de 5 departamentos.")
+            print(f"O departamento '{departamento.nome}' já está vinculado à universidade.")
+
+    def remover_departamento(self, departamento):
+        if departamento in self.departamentos:
+            departamento.remover_todos_professores()  # Remove os professores associados
+            self.departamentos.remove(departamento)
+        else:
+            print(f"O departamento '{departamento.nome}' não está nesta universidade.")
+
+    def remover_todos_departamentos(self):
+        for departamento in list(self.departamentos):
+            self.remover_departamento(departamento)
 
     def listar_departamentos(self):
-        return [d.nome for d in self.departamentos]
+        return [dep.nome for dep in self.departamentos]
