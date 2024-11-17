@@ -6,10 +6,18 @@ class Departamento:
         self.professores = []
 
     def adicionar_professor(self, professor):
-        if len(self.professores) < 5:
+        if professor not in self.professores:
             self.professores.append(professor)
-        else:
-            print("O departamento já atingiu o limite de 5 professores.")
+            professor.departamento = self
+
+    def remover_professor(self, professor):
+        if professor in self.professores:
+            professor.departamento = None
+            self.professores.remove(professor)
+
+    def remover_todos_professores(self):
+        for professor in list(self.professores):
+            self.remover_professor(professor)
 
     def listar_professores(self):
-        return [p.nome for p in self.professores]
+        return [prof.nome for prof in self.professores]
