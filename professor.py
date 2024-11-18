@@ -1,24 +1,24 @@
-from disciplina import Disciplina
+from subject import Subject
 
 class Professor:
-    def __init__(self, nome):
-        self.nome = nome
-        self.disciplinas = []
-        self.departamento = None
+    def __init__(self, name):
+        self.name = name
+        self.subjects = []
+        self.department = None
 
-    def adicionar_disciplina(self, disciplina):
-        if disciplina not in self.disciplinas:
-            self.disciplinas.append(disciplina)
-            disciplina.professor = self
+    def add_subject(self, subject):
+        if subject not in self.subjects:
+            self.subjects.append(subject)
+            subject.professor = self
 
-    def remover_disciplina(self, disciplina):
-        if disciplina in self.disciplinas:
-            disciplina.professor = None
-            self.disciplinas.remove(disciplina)
+    def remove_subject(self, subject):
+        if subject in self.subjects:
+            subject.professor = None
+            self.subjects.remove(subject)
 
-    def remover_todas_disciplinas(self):
-        for disciplina in list(self.disciplinas):
-            self.remover_disciplina(disciplina)
+    def remove_all_subjects(self):
+        for subject in list(self.subjects):
+            self.remove_subject(subject)
 
-    def listar_disciplinas(self):
-        return [disc.nome for disc in self.disciplinas]
+    def list_subjects(self):
+        return [subj.name for subj in self.subjects]

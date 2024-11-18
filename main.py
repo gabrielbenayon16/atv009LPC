@@ -1,23 +1,22 @@
-from universidade import Universidade
-from departamento import Departamento
+from university import University
+from department import Department
 from professor import Professor
-from disciplina import Disciplina
+from subject import Subject
 
 
 def main():
+    university = University("UEA")
+    print(f"\nUniversity: {university.name}")
 
-    universidade = Universidade("UEA")
-    print(f"\nUniversidade: {universidade.nome}")
-
-    # criando departamentos e professores
-    departamentos_nomes = [
+    # creating departments and professors
+    department_names = [
         "Departamento de Computação",
         "Departamento de Ciclo Básico",
         "Departamento de Mecânica",
         "Departamento de Elétrica",
         "Departamento de Química",
     ]
-    professores_nomes = [
+    professor_names = [
         "Ciclano da Silva",
         "Beltrano de Souza",
         "Raimundo Nonato",
@@ -25,27 +24,23 @@ def main():
         "Brás Cubas",
     ]
 
-    departamentos = [
-        Departamento(nome) for nome in departamentos_nomes
-    ]
-    professores = [
-        Professor(nome) for nome in professores_nomes
-    ]
+    departments = [Department(name) for name in department_names]
+    professors = [Professor(name) for name in professor_names]
 
-    for dep, prof in zip(departamentos, professores):
-        universidade.adicionar_departamento(dep)
-        dep.adicionar_professor(prof)
+    for dep, prof in zip(departments, professors):
+        university.add_department(dep)
+        dep.add_professor(prof)
 
-    print("\nDepartamentos:")
-    for departamento in universidade.listar_departamentos():
-        print(f"- {departamento}")
+    print("\nDepartments:")
+    for department in university.list_departments():
+        print(f"- {department}")
 
-    print("\nProfessores adicionados:")
-    for dep in departamentos:
-        print(f"{dep.nome}: {dep.listar_professores()}")
+    print("\nAdded Professors:")
+    for dep in departments:
+        print(f"{dep.name}: {dep.list_professors()}")
 
-    # criando disciplinas
-    disciplinas_dados = [
+    # creating subjects
+    subject_data = [
         ('Programação de Computadores e Algoritmos', 60),
         ("Cálculo 1", 90),
         ("Mecânica dos Sólidos", 66),
@@ -53,23 +48,23 @@ def main():
         ('Química Geral', 60),
     ]
 
-    disciplinas = [
-        Disciplina(nome, carga_horaria, prof)
-        for (nome, carga_horaria), prof in zip(disciplinas_dados, professores)
+    subjects = [
+        Subject(name, workload, prof)
+        for (name, workload), prof in zip(subject_data, professors)
     ]
 
-    for prof, disc in zip(professores, disciplinas):
-        prof.adicionar_disciplina(disc)
+    for prof, subj in zip(professors, subjects):
+        prof.add_subject(subj)
 
-    print("\nDisciplinas adicionadas:")
-    for prof in professores:
-        print(f"{prof.nome}: {prof.listar_disciplinas()}")
+    print("\nAdded Subjects:")
+    for prof in professors:
+        print(f"{prof.name}: {prof.list_subjects()}")
 
-    print("\nDetalhes das Disciplinas:")
-    for disc in disciplinas:
-        print(f"- {disc.informacoes_disciplina()}")
+    print("\nSubject Details:")
+    for subj in subjects:
+        print(f"- {subj.subject_info()}")
 
 
-# executar o programa
+# execute the program
 if __name__ == "__main__":
     main()
