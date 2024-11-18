@@ -1,5 +1,4 @@
 from university import University
-from department import Department
 from professor import Professor
 from subject import Subject
 
@@ -8,14 +7,8 @@ def main():
     university = University("UEA")
     print(f"\nUniversity: {university.name}")
 
-    # creating departments and professors
-    department_names = [
-        "Departamento de Computação",
-        "Departamento de Ciclo Básico",
-        "Departamento de Mecânica",
-        "Departamento de Elétrica",
-        "Departamento de Química",
-    ]
+    university.create_departments()
+
     professor_names = [
         "Ciclano da Silva",
         "Beltrano de Souza",
@@ -23,12 +16,9 @@ def main():
         "Girafales",
         "Brás Cubas",
     ]
-
-    departments = [Department(name) for name in department_names]
     professors = [Professor(name) for name in professor_names]
 
-    for dep, prof in zip(departments, professors):
-        university.add_department(dep)
+    for dep, prof in zip(university.departments, professors):
         dep.add_professor(prof)
 
     print("\nDepartments:")
@@ -36,10 +26,9 @@ def main():
         print(f"- {department}")
 
     print("\nAdded Professors:")
-    for dep in departments:
+    for dep in university.departments:
         print(f"{dep.name}: {dep.list_professors()}")
 
-    # creating subjects
     subject_data = [
         ('Programação de Computadores e Algoritmos', 60),
         ("Cálculo 1", 90),
@@ -65,6 +54,5 @@ def main():
         print(f"- {subj.subject_info()}")
 
 
-# execute the program
 if __name__ == "__main__":
     main()

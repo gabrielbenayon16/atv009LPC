@@ -1,5 +1,6 @@
 from department import Department
 
+
 class University:
     def __init__(self, name):
         self.name = name
@@ -24,3 +25,15 @@ class University:
 
     def list_departments(self):
         return [dep.name for dep in self.departments]
+
+    def create_departments(self):
+        department_names = [
+            "Departamento de Computação",
+            "Departamento de Ciclo Básico",
+            "Departamento de Mecânica",
+            "Departamento de Elétrica",
+            "Departamento de Química",
+        ]
+        for name in department_names:
+            department = Department(name)
+            self.add_department(department)
